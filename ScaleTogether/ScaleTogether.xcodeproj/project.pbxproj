@@ -20,6 +20,8 @@
 		42F8609F16C7ECC700AB6F59 /* WWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F8609E16C7ECC700AB6F59 /* WWViewController.m */; };
 		42F860A616C7ED2000AB6F59 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 42F860A516C7ED2000AB6F59 /* README.md */; };
 		42F8610D16C7EFF400AB6F59 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F8610C16C7EFF400AB6F59 /* libCorePlot-CocoaTouch.a */; };
+		42F8610F16C7F16400AB6F59 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F8610E16C7F16400AB6F59 /* QuartzCore.framework */; };
+		42F8611216C7F3CC00AB6F59 /* WWChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F8611116C7F3CC00AB6F59 /* WWChartViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,6 +117,9 @@
 		42F8610A16C7EFF400AB6F59 /* NSDecimalNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDecimalNumberExtensions.h; sourceTree = "<group>"; };
 		42F8610B16C7EFF400AB6F59 /* NSNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumberExtensions.h; sourceTree = "<group>"; };
 		42F8610C16C7EFF400AB6F59 /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
+		42F8610E16C7F16400AB6F59 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		42F8611016C7F3CC00AB6F59 /* WWChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WWChartViewController.h; path = Controllers/WWChartViewController.h; sourceTree = "<group>"; };
+		42F8611116C7F3CC00AB6F59 /* WWChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WWChartViewController.m; path = Controllers/WWChartViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,9 +127,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42F8610F16C7F16400AB6F59 /* QuartzCore.framework in Frameworks */,
+				42F8608716C7ECC700AB6F59 /* CoreGraphics.framework in Frameworks */,
 				42F8608316C7ECC700AB6F59 /* UIKit.framework in Frameworks */,
 				42F8608516C7ECC700AB6F59 /* Foundation.framework in Frameworks */,
-				42F8608716C7ECC700AB6F59 /* CoreGraphics.framework in Frameworks */,
 				42F8610D16C7EFF400AB6F59 /* libCorePlot-CocoaTouch.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -135,6 +141,7 @@
 		42F8607616C7ECC700AB6F59 = {
 			isa = PBXGroup;
 			children = (
+				42F8610E16C7F16400AB6F59 /* QuartzCore.framework */,
 				42F860A716C7EFBF00AB6F59 /* Libraries */,
 				42F860A516C7ED2000AB6F59 /* README.md */,
 				42F8608816C7ECC700AB6F59 /* ScaleTogether */,
@@ -164,6 +171,7 @@
 		42F8608816C7ECC700AB6F59 /* ScaleTogether */ = {
 			isa = PBXGroup;
 			children = (
+				42F8611316C7F3D100AB6F59 /* Controllers */,
 				42F8609116C7ECC700AB6F59 /* WWAppDelegate.h */,
 				42F8609216C7ECC700AB6F59 /* WWAppDelegate.m */,
 				42F8609A16C7ECC700AB6F59 /* MainStoryboard.storyboard */,
@@ -286,6 +294,15 @@
 			path = CorePlotHeaders;
 			sourceTree = "<group>";
 		};
+		42F8611316C7F3D100AB6F59 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				42F8611016C7F3CC00AB6F59 /* WWChartViewController.h */,
+				42F8611116C7F3CC00AB6F59 /* WWChartViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -357,6 +374,7 @@
 				42F8608F16C7ECC700AB6F59 /* main.m in Sources */,
 				42F8609316C7ECC700AB6F59 /* WWAppDelegate.m in Sources */,
 				42F8609F16C7ECC700AB6F59 /* WWViewController.m in Sources */,
+				42F8611216C7F3CC00AB6F59 /* WWChartViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +427,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -433,6 +452,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

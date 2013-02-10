@@ -7,8 +7,11 @@
 //
 
 #import "WWViewController.h"
+#import "WWChartViewController.h"
 
 @interface WWViewController ()
+
+@property (nonatomic) IBOutlet UIView *chartView;
 
 @end
 
@@ -17,7 +20,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard"
+                                                             bundle: nil];
+    
+    WWChartViewController *controller = (WWChartViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"WWChartViewController"];
+
+    controller.view = self.chartView;
+    
 }
 
 - (void)didReceiveMemoryWarning
