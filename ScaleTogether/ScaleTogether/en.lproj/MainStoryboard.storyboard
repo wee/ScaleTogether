@@ -20,7 +20,7 @@
                             <view contentMode="scaleToFill" id="FUt-YC-y3M" userLabel="InfoView">
                                 <rect key="frame" x="0.0" y="240" width="320" height="428"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" id="puL-10-QNe" userLabel="ScaleView">
                                 <rect key="frame" x="0.0" y="274" width="320" height="320"/>
@@ -32,6 +32,7 @@
                     </view>
                     <connections>
                         <outlet property="chartView" destination="MOv-dY-4NP" id="CAp-z0-eGF"/>
+                        <outlet property="scaleWheelView" destination="puL-10-QNe" id="Eab-Qs-Ohz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -45,21 +46,15 @@
             </objects>
             <point key="canvasLocation" x="728" y="72"/>
         </scene>
+        <!--Scale Wheel View Controller-->
+        <scene sceneID="EKJ-sm-sId">
+            <objects>
+                <viewController storyboardIdentifier="WWScaleWheelViewController" id="ciy-uK-Dp8" customClass="WWScaleWheelViewController" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1GW-ix-xLK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1080" y="72"/>
+        </scene>
     </scenes>
-    <classes>
-        <class className="WWChartViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WWChartViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="view" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="WWViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WWViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="chartView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

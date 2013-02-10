@@ -75,7 +75,7 @@
 {
     // 1 - Create the graph
     CPTGraph *graph = [[CPTXYGraph alloc] initWithFrame:self.hostView.bounds];
-    [graph applyTheme:[CPTTheme themeNamed:kCPTDarkGradientTheme]];
+    [graph applyTheme:[CPTTheme themeNamed:kCPTStocksTheme]];
     self.hostView.hostedGraph = graph;
     // 2 - Set graph title
     NSString *title = @"Weight History";
@@ -161,8 +161,8 @@
     tickLineStyle.lineColor = [CPTColor whiteColor];
     tickLineStyle.lineWidth = 2.0f;
     CPTMutableLineStyle *gridLineStyle = [CPTMutableLineStyle lineStyle];
-    tickLineStyle.lineColor = [CPTColor blackColor];
-    tickLineStyle.lineWidth = 1.0f;
+    gridLineStyle.lineColor = [CPTColor blackColor];
+    gridLineStyle.lineWidth = 1.0f;
 
     CPTXYAxisSet *axisSet = (CPTXYAxisSet *) self.hostView.hostedGraph.axisSet;
     
@@ -209,7 +209,7 @@
     y.tickDirection = CPTSignPositive;
     NSInteger majorIncrement = 100;
     NSInteger minorIncrement = 50;
-    CGFloat yMax = 700.0f;  // should determine dynamically based on max price
+    CGFloat yMax = [[self maxY] floatValue];
     NSMutableSet *yLabels = [NSMutableSet set];
     NSMutableSet *yMajorLocations = [NSMutableSet set];
     NSMutableSet *yMinorLocations = [NSMutableSet set];
@@ -255,9 +255,8 @@
     switch (fieldEnum) {
         case CPTScatterPlotFieldX:
         {
-            NSTimeInterval firstDateTime = [[self dateFromUTCString:self.weightHistory[0][0]] timeIntervalSince1970];
             NSDate *dateTime = [self dateFromUTCString:dateWeight[0]];
-            NSTimeInterval x =  [dateTime timeIntervalSince1970] - firstDateTime;
+            NSTimeInterval x =  [dateTime timeIntervalSince1970] - [self minX];
             result = [NSNumber numberWithDouble:x];
         }
         break;
@@ -270,14 +269,66 @@
     return result;
 }
 
--(CPTLayer *)dataLabelForPlot:(CPTPlot *)plot recordIndex:(NSUInteger)index {
+- (CPTLayer *)dataLabelForPlot:(CPTPlot *)plot recordIndex:(NSUInteger)index
+{
     return nil;
 }
 
--(NSString *)legendTitleForPieChart:(CPTPieChart *)pieChart recordIndex:(NSUInteger)index {
+- (NSString *)legendTitleForPieChart:(CPTPieChart *)pieChart recordIndex:(NSUInteger)index
+{
     return @"Weight";
 }
 
+- (NSTimeInterval)minX
+{
+    return [[self dateFromUTCString:self.weightHistory[0][0]] timeIntervalSince1970];
+}
+
+- (NSNumber *)minY
+{
+    NSNumber *myWeight = [self minY:self.weightHistory];
+    NSNumber *groupWeight = [self minY:self.groupWeightHistory];
+    return [myWeight compare:groupWeight] == NSOrderedAscending ? myWeight : groupWeight;
+}
+
+- (NSNumber *)minY:(NSArray *)dateWeightArray
+{
+    NSNumber *mininum = nil;
+    for (NSArray *dateWeight in dateWeightArray) {
+        if (mininum == nil) {
+            mininum = dateWeight[1];
+        } else {
+            NSNumber *weight = dateWeight[1];
+            if ([weight compare:mininum] == NSOrderedAscending) {
+                mininum = weight;
+            }
+        }
+    }
+    return mininum;
+}
+
+- (NSNumber *)maxY
+{
+    NSNumber *myWeight = [self minY:self.weightHistory];
+    NSNumber *groupWeight = [self minY:self.groupWeightHistory];
+    return [myWeight compare:groupWeight] == NSOrderedAscending ? groupWeight : myWeight;
+}
+
+- (NSNumber *)maxY:(NSArray *)dateWeightArray
+{
+    NSNumber *maxinum = nil;
+    for (NSArray *dateWeight in dateWeightArray) {
+        if (maxinum == nil) {
+            maxinum = dateWeight[1];
+        } else {
+            NSNumber *weight = dateWeight[1];
+            if ([maxinum compare:weight] == NSOrderedAscending) {
+                maxinum = weight;
+            }
+        }
+    }
+    return maxinum;
+}
 
 #pragma mark - Date & Time
 - (NSDate *)dateFromUTCString:(NSString *)stringValue

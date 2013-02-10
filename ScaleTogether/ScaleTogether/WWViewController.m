@@ -8,10 +8,12 @@
 
 #import "WWViewController.h"
 #import "WWChartViewController.h"
+#import "WWScaleWheelViewController.h"
 
 @interface WWViewController ()
 
 @property (nonatomic) IBOutlet UIView *chartView;
+@property (nonatomic) IBOutlet UIView *scaleWheelView;
 
 @end
 
@@ -26,6 +28,9 @@
     WWChartViewController *controller = (WWChartViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"WWChartViewController"];
 
     controller.view = self.chartView;
+    
+    WWScaleWheelViewController *wheelController = (WWScaleWheelViewController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"WWScaleWheelViewController"];
+    wheelController.view = self.scaleWheelView;
     
 }
 
