@@ -37,16 +37,6 @@
     
     [self.view addSubview:container];
     
-//    [NSTimer scheduledTimerWithTimeInterval:1
-//                                     target:self
-//                                   selector:@selector(rotate)
-//                                   userInfo:nil
-//                                    repeats:YES];
-}
-
-- (void) rotate {
-    CGAffineTransform t = CGAffineTransformRotate(self.container.transform, -M_PI/4);
-    self.container.transform = t;
 }
 
 @end

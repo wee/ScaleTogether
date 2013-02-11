@@ -13,8 +13,9 @@
 #define MAJOR_TICK_LENGTH 30.0
 #define MINOR_TICK_LENGTH 10.0
 
-
 @implementation WWScaleView
+
+static CGFloat rotationDegree  = 0.0;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -37,13 +38,21 @@
     CGContextFillPath(context);
     
     NSUInteger numberOfSections = 48;
-    for (NSUInteger i = 0; i < numberOfSections; i++) {
-        [self drawTickAndLabel:i sections:numberOfSections context:context];
+    for (NSUInteger section = 0; section < numberOfSections; section++) {
+        [self drawTickAndLabel:section sections:numberOfSections startingRadius:rotationDegree context:context];
     }
+    // Test scale wheel rotation
+    [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(rotate) userInfo:nil repeats:NO];
+}
+
+- (void)rotate
+{
+    rotationDegree += 0.01;
+    [self setNeedsDisplay];
     
 }
 
-- (void)drawTickAndLabel:(NSUInteger)i sections:(NSUInteger)numberOfSections context:(CGContextRef)context
+- (void)drawTickAndLabel:(NSUInteger)section sections:(NSUInteger)numberOfSections startingRadius:(CGFloat)startingRadius context:(CGContextRef)context
 {
     CGSize size = self.bounds.size;
     CGFloat midX = size.width/2.0;
@@ -55,8 +64,8 @@
     CGColorRef color = CGColorCreate(colorspace, components);
     CGContextSetStrokeColorWithColor(context, color);
     
-    CGFloat tickLength = (i % 2) == 0 ? MAJOR_TICK_LENGTH : MINOR_TICK_LENGTH;
-    CGFloat angle = angleSize * i;
+    CGFloat tickLength = (section % 2) == 0 ? MAJOR_TICK_LENGTH : MINOR_TICK_LENGTH;
+    CGFloat angle = angleSize * section + startingRadius;
     CGFloat x = midX + sin(angle) * WHEEL_RADIUS;
     CGFloat y = WHEEL_RADIUS - cos(angle) * WHEEL_RADIUS;
     CGFloat x2 = midX + sin(angle) * (WHEEL_RADIUS - tickLength);;
@@ -71,19 +80,17 @@
     im.backgroundColor = [UIColor clearColor];
     
     CGFloat value;
-    if (i < numberOfSections/2) {
-        value = [self.weight floatValue] + (CGFloat)i / 2;
+    if (section < numberOfSections/2) {
+        value = [self.weight floatValue] + (CGFloat)section / 2;
     } else {
-        value = [self.weight floatValue] - (numberOfSections - i) / 2;
+        value = [self.weight floatValue] - ((CGFloat)numberOfSections - section) / 2;
     }
     
-    NSLog(@"value = %f", value);
     im.text = [NSString stringWithFormat:@"%.1f", value];
     im.textAlignment = NSTextAlignmentCenter;
     im.layer.anchorPoint = CGPointMake(0.5f, 0.5f);
     im.layer.position = CGPointMake(midX, WHEEL_RADIUS);
-    im.transform = CGAffineTransformConcat(CGAffineTransformMakeTranslation(0, -WHEEL_RADIUS + MAJOR_TICK_LENGTH + 10.0), CGAffineTransformMakeRotation(angleSize * i));
-    im.tag = i;
+    im.transform = CGAffineTransformConcat(CGAffineTransformMakeTranslation(0, -WHEEL_RADIUS + MAJOR_TICK_LENGTH + 10.0), CGAffineTransformMakeRotation(angle));
     [self addSubview:im];
 
 }
