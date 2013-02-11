@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Wee Witthawaskul. All rights reserved.
 //
 
-#import <QuartzCore/QuartzCore.h>
 #import "WWScaleWheelViewController.h"
+#import "WWScaleView.h"
 
 @interface WWScaleWheelViewController ()
 
@@ -30,25 +30,9 @@
 
 - (void)drawWheel
 {
-    NSUInteger numberOfSections = 48;
     
-    UIView *container = [[UIView alloc] initWithFrame:self.view.bounds];
-    CGFloat angleSize = 2*M_PI/numberOfSections;
-    for (int i = 0; i < numberOfSections; i++) {
-        UILabel *im = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-        im.backgroundColor = [UIColor redColor];
-        NSDecimalNumber *number = [NSDecimalNumber decimalNumberWithDecimal:[[NSNumber numberWithInt:i] decimalValue]];
-        im.text = [NSString stringWithFormat:@"%@", [self.weight decimalNumberByAdding:number]];
-        im.textAlignment = NSTextAlignmentCenter;
-        im.layer.anchorPoint = CGPointMake(0.5f, 0.5f);
-        im.layer.position = CGPointMake(container.bounds.size.width/2.0,
-                                        container.bounds.size.height);
-        im.transform = CGAffineTransformConcat(CGAffineTransformMakeTranslation(0, -300), CGAffineTransformMakeRotation(angleSize * i));
-        im.tag = i;
-        [container addSubview:im];
-    }
-    container.userInteractionEnabled = NO;
-    
+    WWScaleView *container = [[WWScaleView alloc] initWithFrame:self.view.bounds];
+    container.weight = self.weight;
     self.container = container;
     
     [self.view addSubview:container];

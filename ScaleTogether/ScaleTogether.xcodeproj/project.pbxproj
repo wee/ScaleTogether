@@ -25,6 +25,7 @@
 		42F8612E16C8054500AB6F59 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F8611716C8054500AB6F59 /* ISO8601DateFormatter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		42F8612F16C8054500AB6F59 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42F8611816C8054500AB6F59 /* LICENSE.txt */; };
 		42F8614516C8452500AB6F59 /* WWScaleWheelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F8614416C8452500AB6F59 /* WWScaleWheelViewController.m */; };
+		42F8614916C94F4200AB6F59 /* WWScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F8614816C94F4200AB6F59 /* WWScaleView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -128,6 +129,8 @@
 		42F8611816C8054500AB6F59 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		42F8614316C8452500AB6F59 /* WWScaleWheelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WWScaleWheelViewController.h; path = Controllers/WWScaleWheelViewController.h; sourceTree = "<group>"; };
 		42F8614416C8452500AB6F59 /* WWScaleWheelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WWScaleWheelViewController.m; path = Controllers/WWScaleWheelViewController.m; sourceTree = "<group>"; };
+		42F8614716C94F4200AB6F59 /* WWScaleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WWScaleView.h; path = Views/WWScaleView.h; sourceTree = "<group>"; };
+		42F8614816C94F4200AB6F59 /* WWScaleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WWScaleView.m; path = Views/WWScaleView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +182,7 @@
 		42F8608816C7ECC700AB6F59 /* ScaleTogether */ = {
 			isa = PBXGroup;
 			children = (
+				42F8614616C94F2600AB6F59 /* Views */,
 				42F8611316C7F3D100AB6F59 /* Controllers */,
 				42F8609116C7ECC700AB6F59 /* WWAppDelegate.h */,
 				42F8609216C7ECC700AB6F59 /* WWAppDelegate.m */,
@@ -325,6 +329,15 @@
 			path = "../Libraries/iso-8601-date-formatter";
 			sourceTree = "<group>";
 		};
+		42F8614616C94F2600AB6F59 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				42F8614716C94F4200AB6F59 /* WWScaleView.h */,
+				42F8614816C94F4200AB6F59 /* WWScaleView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -400,6 +413,7 @@
 				42F8611216C7F3CC00AB6F59 /* WWChartViewController.m in Sources */,
 				42F8612E16C8054500AB6F59 /* ISO8601DateFormatter.m in Sources */,
 				42F8614516C8452500AB6F59 /* WWScaleWheelViewController.m in Sources */,
+				42F8614916C94F4200AB6F59 /* WWScaleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
