@@ -99,11 +99,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ScaleTogether/Views/WWScaleView.m"
-         timestampString = "382296784.757292"
+         timestampString = "382300586.629179"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "49"
-         endingLineNumber = "49"
+         startingLineNumber = "104"
+         endingLineNumber = "104"
          landmarkName = "-rotate"
          landmarkType = "5">
       </FileBreakpoint>
@@ -112,11 +112,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ScaleTogether/Views/WWScaleView.m"
-         timestampString = "382296891.322582"
+         timestampString = "382300586.629179"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "30"
-         endingLineNumber = "30"
+         startingLineNumber = "79"
+         endingLineNumber = "79"
          landmarkName = "-drawRect:"
          landmarkType = "5">
       </FileBreakpoint>
